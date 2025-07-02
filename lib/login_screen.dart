@@ -10,8 +10,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  String _username = '';
-  String _password = '';
 
   void _login() {
     if (_formKey.currentState!.validate()) {
@@ -37,14 +35,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   TextFormField(
                     decoration: const InputDecoration(labelText: 'Username'),
-                    onChanged: (v) => _username = v,
                     validator: (v) => v == null || v.isEmpty ? 'Enter username' : null,
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
                     decoration: const InputDecoration(labelText: 'Password'),
                     obscureText: true,
-                    onChanged: (v) => _password = v,
                     validator: (v) => v == null || v.isEmpty ? 'Enter password' : null,
                   ),
                   const SizedBox(height: 24),
