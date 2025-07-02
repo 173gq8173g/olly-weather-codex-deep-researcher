@@ -9,7 +9,9 @@ class WeatherInfo {
     return WeatherInfo(
       city: json['name'] as String,
       temperature: (json['main']['temp'] as num).toDouble(),
-      description: (json['weather'] as List).first['description'] as String,
+      description: (json['weather'] is List && (json['weather'] as List).isNotEmpty)
+          ? (json['weather'] as List).first['description'] as String
+          : 'No description available',
     );
   }
 }

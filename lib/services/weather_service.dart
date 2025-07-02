@@ -43,7 +43,7 @@ class WeatherService {
     if (response.statusCode == 200) {
       return WeatherInfo.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
     } else {
-      throw Exception('Failed to load weather');
+      throw Exception('Failed to load weather. HTTP status code: ${response.statusCode}. Response body: ${response.body}');
     }
   }
 }
