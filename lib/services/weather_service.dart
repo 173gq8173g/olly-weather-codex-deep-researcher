@@ -5,15 +5,18 @@ import 'package:geolocator/geolocator.dart';
 
 import '../models/weather_info.dart';
 
-class WeatherService {
+abstract class WeatherService {
   static WeatherService? serviceOverride;
-  static const String apiKey = 'YOUR_API_KEY'; // Insert API key here
+  static const String apiKey = 'bdd08cc6b59c4144943913336faabb76'; // Insert API key here
 
   factory WeatherService() {
-    return serviceOverride ?? WeatherService._();
+    return serviceOverride ?? _WeatherServiceImpl();
   }
 
-  WeatherService._();
+  Future<WeatherInfo> fetchCurrentLocationWeather();
+}
+
+class _WeatherServiceImpl implements WeatherService {
 
   Future<WeatherInfo> fetchCurrentLocationWeather() async {
     Position position;
@@ -36,7 +39,7 @@ class WeatherService {
     }
 
     final uri = Uri.parse(
-      'https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=$apiKey',
+      'https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=${WeatherService.apiKey}',
     );
 
     final response = await http.get(uri);

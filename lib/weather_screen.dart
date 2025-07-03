@@ -47,9 +47,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
       child = Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(_info!.city, style: Theme.of(context).textTheme.headline5),
-          Text('${_info!.temperature}°C',
-              style: Theme.of(context).textTheme.headline4),
+          Text(_info!.city, style: Theme.of(context).textTheme.headlineSmall),
+          Text('${_info!.temperature % 1 == 0 ? _info!.temperature.toInt() : _info!.temperature}°C',
+              style: Theme.of(context).textTheme.headlineMedium),
           Text(_info!.description),
         ],
       );
